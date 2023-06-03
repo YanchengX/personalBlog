@@ -12,6 +12,8 @@ class PostTable extends React.Component{
         super(props);
         this.state = {
           data: [],
+          loading: true,
+          error: false
         };
       }
     
@@ -21,16 +23,17 @@ class PostTable extends React.Component{
     
       fetchData = async () => {
         try {
-          const response = await axios.get('/postlist'); // 將API端點替換為實際的API URL
+          const response = await axios.get('https://vmblog-388622.de.r.appspot.com/postlist'); // 將API端點替換為實際的API URL
           this.setState({ data: response.data }); // 將資料存入狀態變數
         } catch (error) {
           console.log(error);
+          this.setState({ error: true, loading: false});
         }
       }
 
       render() {
-        const { data } = this.state;
-    
+        const { data,  } = this.state;
+
         return (
           //這邊可以做css
           <div className='postarea'>
@@ -39,6 +42,8 @@ class PostTable extends React.Component{
             ))}
           </div>
         );
+
+
       }
 }
 

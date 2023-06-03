@@ -15,7 +15,7 @@ class Clap extends React.Component{
     handleShowClap = async () => {
         const {postid} = this.state
         try {
-          const response = await axios.get(`/clapcount/${postid}`); 
+          const response = await axios.get(`https://vmblog-388622.de.r.appspot.com/clapcount/${postid}`); 
           this.setState({ clap : response.data['clap_count'], });
         } catch (error) {
           console.log(error);
@@ -28,7 +28,7 @@ class Clap extends React.Component{
         const data = {
             clap_count : clap,
         }
-        axios.put(`/clapcount/${postid}`, data)
+        axios.put(`https://vmblog-388622.de.r.appspot.com/clapcount/${postid}`, data)
             .then(response => {
                 this.setState({
                     clap : response.data['clap_count'],
