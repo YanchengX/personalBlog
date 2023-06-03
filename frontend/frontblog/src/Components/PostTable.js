@@ -21,7 +21,7 @@ class PostTable extends React.Component{
     
       fetchData = async () => {
         try {
-          const response = await axios.get('http://127.0.0.1:8000/postlist'); // 將API端點替換為實際的API URL
+          const response = await axios.get('vmblog-388622.de.r.appspot.com/postlist'); // 將API端點替換為實際的API URL
           this.setState({ data: response.data }); // 將資料存入狀態變數
         } catch (error) {
           console.log(error);

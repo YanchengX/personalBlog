@@ -49,7 +49,7 @@ class Comment extends React.Component{
         //get username
         if (this.props.token !== ''){
             axios.get(
-                'http://127.0.0.1:8000/user',
+                'vmblog-388622.de.r.appspot.com/user',
                 {
                   headers: {
                     Authorization:  `Bearer ${this.props.token}`,
@@ -78,7 +78,7 @@ class Comment extends React.Component{
         const jsonData = JSON.stringify(data);
         console.log(jsonData)
         // post commentlist
-        axios.post('http://127.0.0.1:8000/commentlist', jsonData,{
+        axios.post('vmblog-388622.de.r.appspot.com/commentlist', jsonData,{
             headers: {
                 'Content-Type': 'application/json',
               },
