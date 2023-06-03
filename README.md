@@ -1,7 +1,7 @@
 # 前後端個人網站實作
 
 個人網站入口
-https://vmblog-388622.de.r.appspot.com/
+https://backendtest-388621.de.r.appspot.com/
 
 ## 開發利用到的工具跟觀念
 
@@ -22,18 +22,25 @@ https://vmblog-388622.de.r.appspot.com/
     * cloud run/app engine使用cloud sql,secret manager (Fail)
     * 後端nignx-unicorn (fail)
     
-  
-過程中遇到的問題需要在學習:
-* corsheader 問題
-* 保護settings重要資料
-* docker容器預防系統環境問題
-* gcp k8s佈署以及其他feature功能
-* CICD 流程佈署自動化節省成本時間
-
-
 ## api功能
 * 登入
 * 登出
 * 註冊
 * 留言
-* 鼓勵button
+
+
+過程中遇到的問題需要學習:
+
+* docker容器預防系統環境問題
+* gcp k8s容器佈署
+* CICD 流程佈署自動化節省成本時間
+* 等等devops延伸
+
+* contextAPI管理state
+* webpack打包
+
+* corsheader 問題
+* 保護settings重要key資料 
+* 其他auth跟permission加密問題
+* nginx
+
