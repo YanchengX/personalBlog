@@ -111,8 +111,3 @@ class DeleteAccountView(APIView):
     "username":"fuclyouall",
     "password":"abcd1234"
 }
-
-{
-    "username":"jjjj",
-    "password":"klp264512"
-}
