@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
+
 '''
 apiview funciton->
     from model operation
@@ -21,7 +22,9 @@ class PostList(APIView):
     permission_classes = [AllowAny]
     def get(self, request, format = None):
         posty = Post.objects.all()
+        
         serializer = PostSerializer(posty, many=True)
+        
         return Response(serializer.data)
     
     def post(self, request, format=None):
@@ -30,6 +33,7 @@ class PostList(APIView):
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class PostOperation(APIView):
     '''
@@ -68,8 +72,10 @@ class CommentList(APIView):
     '''
     permission_classes = [AllowAny]
     def get(self, request, format=None):
-        comment = Comment.objects.all()
+        comment = Comment.objects.filter(content__contains = 'test')
+        
         serializer = CommentSerializer(comment, many = True)
+        
         return Response(serializer.data)
     
     def post(self, request, format=None):
@@ -140,6 +146,6 @@ class PostCommentlist(APIView):
 
 
 {
-    "username":"fuclyouall",
+    "username":"aaaa",
     "password":"abcd1234"
 }

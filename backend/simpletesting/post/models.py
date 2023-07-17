@@ -13,7 +13,6 @@ class Post(models.Model):
     clap_count = models.IntegerField(default=0)
     
 
-
 class Comment(models.Model):
     '''
     commentid userid postid content

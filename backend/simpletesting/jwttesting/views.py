@@ -87,7 +87,7 @@ class DeleteAccountView(APIView):
     '''
     permission_classes = [IsAuthenticated]
     def delete(self, request):
-        
+
         #get info
         JWT_SECRET_KEY = settings.SECRET_KEY
         token = request.COOKIES.get('jwt')
@@ -105,12 +105,6 @@ class DeleteAccountView(APIView):
         }
         return response
 
-
-
-{
-    "username":"fuclyouall",
-    "password":"abcd1234"
-}
 
 {
     "username":"jjjj",

@@ -10,6 +10,7 @@ class UserRegisterSerializers(serializers.ModelSerializer):
             "password":{'write_only' : True}
         }
     
+    #overwrite create method
     def create(self, validated_data):
         user = User.objects.create_user(
             username = validated_data['username'],

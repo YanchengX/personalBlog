@@ -21,17 +21,16 @@ class Blog extends React.Component{
 
     render(){
         return (
-                <body className="back">
+                <div className="back">
                     <div className="menubar">
                         <MenuTable token={this.state.tokenshare} setToken={this.setToken}/>
                     </div>
             
                     <InfoTable token={this.state.tokenshare} setToken={this.setToken}/>
                     <PostTable token={this.state.tokenshare} setToken={this.setToken}/>
-                </body>
+                </div>
         )
     }
 }
-
 
 export default Blog;

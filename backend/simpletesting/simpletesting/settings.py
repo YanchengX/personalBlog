@@ -17,10 +17,7 @@ SECRET_KEY = 'django-insecure-849=w#)r$82k%_y&qd^f2!dz_t*a&=(6vql322uh)5wv#cppns
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "vmblog-388622.de.r.appspot.com"
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -32,11 +29,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'rest_framework_simplejwt',
     'jwttesting.apps.JwttestingConfig',
     'post.apps.PostConfig',
     'corsheaders',
+    'drf_yasg',
+
 ]
 
 MIDDLEWARE = [
@@ -78,35 +78,45 @@ WSGI_APPLICATION = 'simpletesting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# [START db_setup]
-if os.getenv('GAE_APPLICATION', None):
-    # Running on production App Engine, so connect to Google Cloud SQL using
-    # the unix socket at /cloudsql/<your-cloudsql-connection string>
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/vmblog-388622:asia-east1:blogdb',
-            'USER': 'jjyan',
-            'PASSWORD': 'KVx.0cD"Eu0eKI[7',
-            'NAME': 'abcsql',
-        }
+
+#google app engine GAE
+#如果主要執行的應用程式環境是gae 或 本地端
+#就從哪邊連線看HOST位於哪邊，如果是本地端可以透過cloud proxy連接
+
+# if os.getenv('GAE_APPLICATION', None):
+#     # Running on production App Engine, so connect to Google Cloud SQL using
+#     # the unix socket at /cloudsql/<your-cloudsql-connection string>
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '/cloudsql/vmblog-388622:asia-east1:blogdb',
+#             'USER': 'jjyan',
+#             'PASSWORD': 'KVx.0cD"Eu0eKI[7',
+#             'NAME': 'abcsql',
+#         }
+#     }
+# else:
+#     # Running locally so connect to either a local MySQL instance or connect 
+#     # to Cloud SQL via the proxy.  To start the proxy via command line: 
+#     #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306 
+#     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '127.0.0.1',
+#             'PORT': '3306',
+#             'NAME': 'abcsql',
+#             'USER': 'jjyan',
+#             'PASSWORD': 'KVx.0cD"Eu0eKI[7',
+#         }
+#     }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    # Running locally so connect to either a local MySQL instance or connect 
-    # to Cloud SQL via the proxy.  To start the proxy via command line: 
-    #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306 
-    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-            'NAME': 'abcsql',
-            'USER': 'jjyan',
-            'PASSWORD': 'KVx.0cD"Eu0eKI[7',
-        }
-    }
-# [END db_setup]
+}
 
 
 # Password validation
@@ -163,9 +173,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
 SIMPLE_JWT = {
     
     "UPDATE_LAST_LOGIN": True,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+    

@@ -42,7 +42,7 @@ class MenuTable extends React.Component{
             username : username,
             password : password,
         };
-        axios.post('https://vmblog-388622.de.r.appspot.com/login', data)
+        axios.post('http://127.0.0.1:8000/login', data)
         .then(response => {
             this.setState({
                 loginstatus : true,
@@ -62,9 +62,9 @@ class MenuTable extends React.Component{
             password : password,
         };
         
-        axios.post('https://vmblog-388622.de.r.appspot.com/register', data)
+        axios.post('http://127.0.0.1:8000/register', data)
         .then(response => {
-          //處理註冊完成
+          //處理註冊完成  
           console.log(response.data);
         })
         .catch(error => {
@@ -75,7 +75,7 @@ class MenuTable extends React.Component{
 
     handelLogout = (event) => {
         axios.post(
-          'https://vmblog-388622.de.r.appspot.com/logout', {},
+          'http://127.0.0.1:8000/logout', {},
           {
             headers: {
               Authorization: `Bearer ${this.props.token}`,
